@@ -178,7 +178,7 @@ gs.autocompleter = {
 	},
 	
 	getPendingCustomers: function(){
-		var query = "SELECT cname FROM test.pledgebook";
+		var query = "SELECT cname FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePendingCustomerLists);
 		var obj = {
 			aQuery: query
@@ -192,7 +192,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getPendingGaurdians: function(){
-		var query = "SELECT fgname FROM test.pledgebook";
+		var query = "SELECT fgname FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePendingGuardianLists);
 		var obj = {
 			aQuery: query
@@ -206,7 +206,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getAddress: function(){
-		var query = "SELECT address FROM test.pledgebook";
+		var query = "SELECT address FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storeAddress);
 		var obj = {
 			aQuery: query
@@ -220,7 +220,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getAddress2: function(){
-		var query = "SELECT address2 FROM test.pledgebook";
+		var query = "SELECT address2 FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storeAddress2);
 		var obj = {
 			aQuery: query
@@ -234,7 +234,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getPlace: function(){
-		var query = "SELECT place FROM test.pledgebook";
+		var query = "SELECT place FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePlace);
 		var obj = {
 			aQuery: query
@@ -248,7 +248,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getPincode: function(){
-		var query = "SELECT pincode FROM test.pledgebook";
+		var query = "SELECT pincode FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePincode);
 		var obj = {
 			aQuery: query
@@ -262,7 +262,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getMobileNos: function(){
-		var query = "SELECT mobile FROM test.pledgebook";
+		var query = "SELECT mobile FROM "+gs.database.schema+".pledgebook";
 		var obj = {
 			aQuery: query
 		}
@@ -276,7 +276,7 @@ gs.autocompleter = {
 	},
 
 	getOrnList: function(){
-		var query = "SELECT ornament_name FROM test.ornament_list";
+		var query = "SELECT ornament_name FROM "+gs.database.schema+".ornament_list";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storeOrnList);
 		var obj = {
 			aQuery: query
@@ -290,7 +290,7 @@ gs.autocompleter = {
 		application.core.call(request, callBackObj);
 	},
 	getPendingBillNo: function(){
-		var query = "SELECT billNo FROM test.pledgebook where status = 'open'";
+		var query = "SELECT billNo FROM "+gs.database.schema+".pledgebook where status = 'open'";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePendingBillNos);
 		var obj = {
 			aQuery: query

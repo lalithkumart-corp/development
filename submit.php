@@ -2,9 +2,9 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "root";
-$myDb = "test1";
+$myDb = "dev";
 
-$link = mysqli_connect("localhost:3306",'root','root', "test");
+$link = mysqli_connect("localhost:3306",'root','root', $myDb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;

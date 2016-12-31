@@ -2,7 +2,8 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$link = mysqli_connect("localhost:3306", "root", "root", "test");
+$mydb = "dev";
+$link = mysqli_connect("localhost:3306", "root", "root", $mydb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -11,7 +12,7 @@ if (!$link) {
 
 $fname = $_POST['fname'];
 //$sql = "SELECT profilepicpath FROM test.mytable1 WHERE myNames = '" .$fname. "'";
-$sql = "SELECT profilepicpath FROM test.pledgebook WHERE cname = '" .$fname. "'";
+$sql = "SELECT profilepicpath FROM ".$mydb.".pledgebook WHERE cname = '" .$fname. "'";
 
 $result = $link->query($sql);
 

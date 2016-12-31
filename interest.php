@@ -2,14 +2,15 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$link = mysqli_connect("localhost:3306", "root", "root", "test");
+$mydb = "dev";
+$link = mysqli_connect("localhost:3306", "root", "root", $mydb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     exit;
 }
 
-$sql = "SELECT * FROM test.interest";
+$sql = "SELECT * FROM ".$mydb.".interest";
 $result = $link->query($sql);
 
 $stack = array();

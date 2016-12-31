@@ -85,7 +85,7 @@ gs.billClosing = {
 					else{
 						var datas = aSelf.getEntries();
 						var obj = {
-							aQuery: "UPDATE test.pledgebook SET status='closed', billClosedDate='"+ datas.closingDate +"' WHERE billNo='"+billNumber+"'"
+							aQuery: "UPDATE "+gs.database.schema+".pledgebook SET status='closed', billClosedDate='"+ datas.closingDate +"' WHERE billNo='"+billNumber+"'"
 						}
 						var callBackObj = application.core.getCallbackObject();
 				        var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -96,7 +96,7 @@ gs.billClosing = {
 				        application.core.call(request, callBackObj);
 
 						var obj = {
-							aQuery: "INSERT INTO test.billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+datas.billNo+"', '"+datas.pledgedDate+"', '"+ datas.closingDate +"','"+ datas.pledgedAmt +"', '"+ datas.no_of_month +"', '"+ datas.int_rate +"', '"+ datas.int_rupee_per_month+ "','"+ datas.interest_amt +"', '"+ datas.actual_estimated_amt + "', '"+ datas.discount_amt +"', '"+ datas.paid_amt +"', '"+ datas.payment_mode+"')"
+							aQuery: "INSERT INTO "+gs.database.schema+".billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+datas.billNo+"', '"+datas.pledgedDate+"', '"+ datas.closingDate +"','"+ datas.pledgedAmt +"', '"+ datas.no_of_month +"', '"+ datas.int_rate +"', '"+ datas.int_rupee_per_month+ "','"+ datas.interest_amt +"', '"+ datas.actual_estimated_amt + "', '"+ datas.discount_amt +"', '"+ datas.paid_amt +"', '"+ datas.payment_mode+"')"
 						}
 						var callBackObj = application.core.getCallbackObject();
 				        var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -115,9 +115,9 @@ gs.billClosing = {
 			pageName = 'billClosingPage';
 		var obj = {};
 		if(pageName == 'book')
-			obj.aQuery = "SELECT * FROM test.pledgebook where billNo='"+billNo+"' and status='closed'";
+			obj.aQuery = "SELECT * FROM "+gs.database.schema+".pledgebook where billNo='"+billNo+"' and status='closed'";
 		else
-        	obj.aQuery = "SELECT * FROM test.pledgebook where billNo='"+billNo+"' and status='open'";
+        	obj.aQuery = "SELECT * FROM "+gs.database.schema+".pledgebook where billNo='"+billNo+"' and status='open'";
         
         var callBackObj = application.core.getCallbackObject();
         var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -206,7 +206,7 @@ gs.billClosing = {
 			var billNo = $("#closingBillNo").text();
 			$('#billToBeClosed').val(billNo);
 			var obj = {};
-			obj.aQuery = "SELECT * FROM test.billclosingdetail where billNo='"+billNo+"'";
+			obj.aQuery = "SELECT * FROM "+gs.database.schema+".billclosingdetail where billNo='"+billNo+"'";
 			var callBackObj = application.core.getCallbackObject();
 			var request = application.core.getRequestData('executequery.php', obj , 'POST');
 			callBackObj.bind('api_response', function(event, response){

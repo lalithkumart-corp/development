@@ -82,7 +82,7 @@ gs.pledgeBook = {
 
                 //START:: update in 'pledgeBook' Table in DB
                 var obj = {
-                    aQuery: "UPDATE test.pledgebook SET status='closed', billClosedDate='"+todayDate+"' WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
+                    aQuery: "UPDATE "+gs.database.schema+".pledgebook SET status='closed', billClosedDate='"+todayDate+"' WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
                 }
                 var callBackObj = application.core.getCallbackObject();
                 var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -94,7 +94,7 @@ gs.pledgeBook = {
 
                 //START:: update in 'billClosingDetail' Table in DB
                 var obj = {
-                    aQuery: "INSERT INTO test.billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+gs.pledgeBook.editingBillNo+"', '"+pledgeDate+"', '"+ todayDate +"','"+ principal +"', '"+ int_details.no_of_month +"', '"+ int_details.int_rate +"', '"+ int_details.int_rupee_per_month+"', '"+ int_details.interest_amt +"', '"+ int_details.actual_estimated_amt + "', '"+ int_details.discount_amt +"', '"+ int_details.paid_amt +"', '"+ int_details.payment_mode +"')"
+                    aQuery: "INSERT INTO "+gs.database.schema+".billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+gs.pledgeBook.editingBillNo+"', '"+pledgeDate+"', '"+ todayDate +"','"+ principal +"', '"+ int_details.no_of_month +"', '"+ int_details.int_rate +"', '"+ int_details.int_rupee_per_month+"', '"+ int_details.interest_amt +"', '"+ int_details.actual_estimated_amt + "', '"+ int_details.discount_amt +"', '"+ int_details.paid_amt +"', '"+ int_details.payment_mode +"')"
                 }
                 var callBackObject = application.core.getCallbackObject();
                 var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -109,7 +109,7 @@ gs.pledgeBook = {
             $('.confirmOpen').off().on('click', function(e){
                 //START:: update in 'pledgeBook' Table in DB
                 var obj = {
-                    aQuery: "UPDATE test.pledgebook SET status='open', billClosedDate='' WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
+                    aQuery: "UPDATE "+gs.database.schema+".pledgebook SET status='open', billClosedDate='' WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
                 }
                 var callBackObj = application.core.getCallbackObject();
                 var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -121,7 +121,7 @@ gs.pledgeBook = {
 
                 //START:: update in 'billClosingDetail' Table in DB
                 var obj = {
-                    aQuery: "DELETE FROM test.billclosingdetail WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
+                    aQuery: "DELETE FROM "+gs.database.schema+".billclosingdetail WHERE billNo='"+gs.pledgeBook.editingBillNo+"'"
                 }
                 var callBackObj = application.core.getCallbackObject();
                 var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -378,7 +378,7 @@ gs.pledgeBook = {
     },
 
     getBillDetails: function(aBillNo){
-        var aQuery = "select * from test.pledgebook where billNo='"+aBillNo+"'";
+        var aQuery = "select * from "+gs.database.schema+".pledgebook where billNo='"+aBillNo+"'";
         gs.querybuilder.executeQuery(aQuery, gs.pledgeBook.fillDetails);
     },
     
@@ -520,7 +520,7 @@ gs.pledgeBook = {
         var billNo = $('#billNo').val() || '';
         var aBillNo = billSeries != '' ? (billSeries + '.' + billNo) : billNo;  
         //var aBillNo = $('#billSeries').val() +'.'+ $('#billNo').val();
-        var aQuery = "select * from test.pledgebook where billNo='"+aBillNo+"'";
+        var aQuery = "select * from "+gs.database.schema+".pledgebook where billNo='"+aBillNo+"'";
         gs.querybuilder.executeQuery(aQuery, gs.pledgeBook.updateBill);      
         gs.pledgeBook.reRenderPledgeBook = true;
     },
@@ -532,7 +532,7 @@ gs.pledgeBook = {
         //var aBillNo = $('#billSeries').val() +'.'+ $('#billNo').val();
         if(!_.isEmpty(data)){
             var entry = application.bill.creation.getEntries();
-            var aQuery = "UPDATE test.pledgebook SET dates='"+entry.adate+"', amount='"+entry.aAmt+"', cname='"+entry.aCustName+"', fgname='"+entry.aFGName+"', address='"+entry.aAddress+"', place='"+entry.aPlace+"', pincode='"+entry.aPincode+"', mobile='"+entry.aMobNo+"', telephone='"+entry.aTeleNo+"', ornaments='"+entry.ornaments+"', netwt='"+entry.aNett+"', grossWt='"+entry.awt+"', ornType='"+entry.ornType+"', interest='"+entry.intRate+"', interest_amt='"+entry.intAmount+"', given_amt='"+entry.givenAmt+"', profilepicpath='"+entry.profilepicpath+"', status='"+entry.status+"'  WHERE billNo='"+aBillNo+"'";
+            var aQuery = "UPDATE "+gs.database.schema+".pledgebook SET dates='"+entry.adate+"', amount='"+entry.aAmt+"', cname='"+entry.aCustName+"', fgname='"+entry.aFGName+"', address='"+entry.aAddress+"', place='"+entry.aPlace+"', pincode='"+entry.aPincode+"', mobile='"+entry.aMobNo+"', telephone='"+entry.aTeleNo+"', ornaments='"+entry.ornaments+"', netwt='"+entry.aNett+"', grossWt='"+entry.awt+"', ornType='"+entry.ornType+"', interest='"+entry.intRate+"', interest_amt='"+entry.intAmount+"', given_amt='"+entry.givenAmt+"', profilepicpath='"+entry.profilepicpath+"', status='"+entry.status+"'  WHERE billNo='"+aBillNo+"'";
             gs.querybuilder.executeQuery(aQuery, gs.pledgeBook.updateComplete);
             gs.pledgeBook.updatedBillNo = aBillNo;
         }else{
@@ -569,7 +569,7 @@ gs.pledgeBook = {
         var bill_to_update = $('#billToBeClosed').val();
         var datas = gs.billClosing.getEntries();
         var obj = {
-            aQuery: "UPDATE test.pledgebook SET status='closed', billClosedDate='"+ datas.closingDate +"' WHERE billNo='"+bill_to_update+"'"
+            aQuery: "UPDATE "+gs.database.schema+".pledgebook SET status='closed', billClosedDate='"+ datas.closingDate +"' WHERE billNo='"+bill_to_update+"'"
         }
         var callBackObj = application.core.getCallbackObject();
         var request = application.core.getRequestData('executequery.php', obj , 'POST');
@@ -578,7 +578,7 @@ gs.pledgeBook = {
         application.core.call(request, callBackObj);
 
         var obj = {
-            aQuery: "UPDATE test.billclosingdetail SET pledgedDate='"+datas.pledgedDate+"', closedDate='"+datas.closingDate+"', pledge_amt='"+datas.pledgedAmt+"', no_of_month='"+datas.no_of_month+"', rate_of_interest='"+datas.int_rate+"', int_rupee_per_month='"+datas.int_rupee_per_month+"', interest_amt='"+datas.interest_amt+"', actual_estimated_amt='"+datas.actual_estimated_amt+"', discount_amt='"+datas.discount_amt+"', paid_amt='"+datas.paid_amt+"', payment_mode='"+datas.payment_mode+"' WHERE billNo='"+bill_to_update+"'"
+            aQuery: "UPDATE "+gs.database.schema+".billclosingdetail SET pledgedDate='"+datas.pledgedDate+"', closedDate='"+datas.closingDate+"', pledge_amt='"+datas.pledgedAmt+"', no_of_month='"+datas.no_of_month+"', rate_of_interest='"+datas.int_rate+"', int_rupee_per_month='"+datas.int_rupee_per_month+"', interest_amt='"+datas.interest_amt+"', actual_estimated_amt='"+datas.actual_estimated_amt+"', discount_amt='"+datas.discount_amt+"', paid_amt='"+datas.paid_amt+"', payment_mode='"+datas.payment_mode+"' WHERE billNo='"+bill_to_update+"'"
         }
         var callBackObj = application.core.getCallbackObject();
         var request = application.core.getRequestData('executequery.php', obj , 'POST');

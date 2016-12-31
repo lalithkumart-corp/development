@@ -168,7 +168,7 @@ application.bill.creation = {
     },
 
     setDefaults: function(){
-        var aQuery = 'SELECT * FROM test.billseries';
+        var aQuery = 'SELECT * FROM '+gs.database.schema+'.billseries';
         gs.querybuilder.executeQuery(aQuery, application.bill.creation.updateDefaults);
     },
 
@@ -371,7 +371,7 @@ application.bill.creation = {
 
     updateLastBillNumber: function(){
         var currentBillNo = $('#billNo').val();
-        var aQuery1 = "UPDATE test.billseries SET last_created_bill='"+currentBillNo+"' WHERE s_no='1'";
+        var aQuery1 = "UPDATE "+gs.database.schema+".billseries SET last_created_bill='"+currentBillNo+"' WHERE s_no='1'";
         //gs.querybuilder.executeQuery(aQuery, '');
         var qObj1 = {
             aQuery: aQuery1
@@ -389,7 +389,7 @@ application.bill.creation = {
     },
 
     updateLastSerialNumber: function(){
-        var aQuery2 = "UPDATE test.billseries SET pledgebook_sno ='"+application.bill.creation.current_s_no +"' WHERE s_no = '1' ";
+        var aQuery2 = "UPDATE "+gs.database.schema+".billseries SET pledgebook_sno ='"+application.bill.creation.current_s_no +"' WHERE s_no = '1' ";
         //gs.querybuilder.executeQuery(aQuery, '');
         var qObj2 = {
             aQuery: aQuery2
@@ -716,7 +716,7 @@ application.bill.creation = {
     getCustomerPendingBills: function(customer_name, father_name){
         var self = application.bill.creation;
         var obj = {
-            aQuery: "SELECT * FROM test.pledgebook where cname = '"+customer_name+"' and fgname = '"+father_name+"'"
+            aQuery: "SELECT * FROM "+gs.database.schema+".pledgebook where cname = '"+customer_name+"' and fgname = '"+father_name+"'"
         }
         var callBackObj = application.core.getCallbackObject();
         var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
