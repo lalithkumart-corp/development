@@ -1,0 +1,81 @@
+Extracted "httpd-2.4.20-win64-VC11" at Location 'C:/' (assume folder name 'Apache24')
+Configures four files
+	1. httpd.conf 			(C:/Apache24/conf)
+	2. httpd-vhosts.conf 	(C:/Apache24/conf/extra)
+	3. httpd-ssl.conf 		(C:/Apache24/conf/extra)
+	4. hosts 				(C:/WINDOWS/System32/drivers/etc)
+
+Open cmd prompt
+	1. Go C:/Apache24/bin
+	2. Type "httpd -k install" press enter.
+	3. Type "httpd -k start" press enter.
+
+==============================================================
+PHP Configuration:
+1. Install php.
+2. In Php folder, there will be two ".ini" files namely
+	php.ini-development
+	php.ini-production
+3. Rename any one among these as "php.ini"
+4. After renaming, Go into that "php.ini" file and Do modifications for Mysqli and mysql and other module support.(Attached the file in drive)
+5. set environment variables .(Go under SYSTEM VARIABLEs -> add under PATH -> c:\Php;)
+6. Restart Apache.
+
+================================================
+27/08/2016
+For SSL config..
+
+1. 	cd "C:\Apache24\bin"
+2.	set OPENSSL_CONF=C:\Apache24\conf\openssl.cnf
+3.	openssl req -new -out server.csr
+		Inputs i provided::
+			passphrase = 'pass'
+			common name = 'workspace'
+			country name = 'IN'
+			state = 'TN'
+			Locality = 'chennai'
+			org name = 'Lalith company'
+			Common Name = 'workspace'  	//this is where we need to enter out Domain Name
+			Email addr = 'lalithkmr9@gmail.com'
+			pwd = 'kforkitesan.'
+4.	openssl rsa -in privkey.pem -out server.key
+		Inputs i have provided::
+			pass phrase = 'pass'
+5.	openssl x509 -in server.csr -out server.cert -req -signkey server.key -days 365
+		//Expiry date can be our wish. I have just given for 365 days
+
+Now We need to MOVE the "server.cert" and "server.key" and "server.csr" file to the "C:\Program Files\Apache24\conf" location.
+Goto httpd.conf, and enable these two lines
+
+	LoadModule ssl_module modules/mod_ssl.so
+	Include conf/extra/httpd-ssl.conf
+
+Goto https-ssl.conf, and enable two lines with proper file name(recently created ssl key certificate files)
+
+	SSLCertificateFile "c:/Apache24/conf/server.cert"
+	SSLCertificateKeyFile "c:/Apache24/conf/server.key"
+
+And in same file (httpd-ssl.conf), just add '*' in vitual host header (only if ssl apache restart thows error), (LINE NO: 121)
+	<VirtualHost *:443>
+Restart apache 
+
+http://rubayathasan.com/tutorial/apache-ssl-on-windows/
+
+================================================
+For Sql: 04/09/2016
+1. Install MySql server (say MySql server 5.5)
+	On Installing, go with default options that will later prompts you with configuration popups.
+	The configurations will also prompts you with password and all....(i have set password as 'root')
+	If you decline to set password, then No password will be set. You can set password in Server client too.
+	
+	I have added the server installation file it into my Drive.
+2. Install sql client like Workbench
+	The workbench will automatically detect the local server and shows you server connection in its display home page. Click on it, and enter Password(if Set)
+
+================================================
+At the time of Broken:(on 04/09/2016)
+
+Modified Phpp.ini file and addded it in Environment variables path
+Installed SQL server 5.5
+
+====================================================

@@ -1,0 +1,1 @@
+var sample_template_var = <?php echo jsonStringify($template->sample_template.html.php); ?>;

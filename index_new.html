@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+	<script src="/lib/jquery.min.js"></script>
+	
+	<script src="/lib/underscore-min.js"></script>
+	<script src="/lib/bootstrap/js/bootstrap.js"></script>
+	
+	<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
+	<script src="/lib/jquery.form.js"></script>
+
+	<script src="/lib/jquery.PrintArea.js"></script>
+
+	<script src="/js/core.js"></script>
+	<script src="/js/saveBill-new.js"></script>
+	
+
+	<link rel="stylesheet" type="text/css" href="cssfile_new.css"/>
+	<link rel="stylesheet" type="text/css" href="/lib/dataTables/dataTables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/lib/dataPicker/jquery-ui.css"/>
+
+	<!-- <script src="/lib/customDateField/js/bootstrap-datetimepicker.min.js"></script>
+	 <link rel="stylesheet" type="text/css" href="/lib/customDateField/css/bootstrap-combined.min.css"/> 
+	<link rel="stylesheet" type="text/css" href="/lib/customDateField/css/bootstrap-datetimepicker.min.css"/> -->
+    <script src="/js/customDate.js"></script>
+   	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css"/>
+   	<script src="/lib/dataTables/dataTables.min.js"></script>
+ 	<script src="/lib/dataPicker/jquery-ui.js"></script>
+ 	<script src = "/js/gs.pledgeBook.js"></script>
+ 	<script src = "/js/gs.billClosing.js"></script>
+ 	<script src = "/js/gs.querybuilder.js"></script>
+
+ 	<!--START: for Autocompleter -->
+    <script type="text/javascript" src="autoCompleter/scripts/jquery.mockjax.js"></script>
+    <script type="text/javascript" src="autoCompleter/src/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="autoCompleter/scripts/countries.js"></script>
+    <link href="autoCompleter/content/styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/gs.autocompleter.js"></script>
+ 	<!--END: for Autocompleter -->
+
+ 	<!--START: for Webcam -->
+ 	<script type="text/javascript" src="/js/gs.webcam.js"></script>
+<!--  	<link href="css/webcam.css" rel="stylesheet" />
+ --> 	<!--END: for Webcam -->
+
+ 	<!-- START: for PHP webcam model -->
+ 	<script type="text/javascript" src="js/webcam.js"></script>
+ 	<!-- END: for PHP webcam model -->
+
+    <script type="text/template" id="newBillCreationTemplate" class="template">
+    	<div class='row billCreation'>
+			<div class="col-md-7 col-sm-7">
+				<div class="billHeader">
+					Pawn Broker
+				</div>
+				<div class="row BillAndAmt">
+					<div class="secondaryName">
+						<label class="inputLabel">Bill No:</label>
+						<input id="billNo" class="inputVal secondaryVal" type="text"/>
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Amount</label>
+						<input id="ammout" class="inputVal secondaryVal" type="text" />
+					</div>
+				</div>
+				<div class="row cName">
+					<div class="secondaryName">
+						<label class="inputLabel">Customer Name</label>
+						<input id="customerName" class="inputVal secondaryVal" type="text" />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Father/Gaurdian Name</label>
+						<input id="fatherGaurdianName" class="inputVal secondaryVal" type="text" />
+					</div>
+				</div>
+				<div class="row addr">
+					<label class="inputLabel">Address 1</label>
+					<input id="address" class="inputVal" class="inputVal" type="text" />
+				</div>
+				<div class="row placeAndPin">
+					<div class="secondaryName">
+						<label class="inputLabel">Place:</label>
+						<input id="place" class="inputVal secondaryVal" type="text" />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">PIN:</label>
+						<input id="pincode" class="inputVal secondaryVal" type="text" />
+					</div>
+				</div>
+				<div class="row contactAndMob">
+					<div class="secondaryName">
+						<label class="inputLabel">Mobile:</label>
+						<input id="mobNo" class="inputVal secondaryVal" type="text" />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Telephone:</label>
+						<input id="teleNo" class="inputVal secondaryVal" type="text" />
+					</div>
+				</div>
+				<div class="row ">
+					<div class="secondaryName">
+						<label class="inputLabel">Weight:</label>
+						<input id="ornWeight" class="inputVal secondaryVal" type="text" />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Nett:</label>
+						<input id="ornNett" class="inputVal secondaryVal" type="text" />
+					</div>
+				</div>
+				<div class="row ornamentDetails">
+					<table>
+						<colgroup>
+							<col style="width: 40px">
+	  						<col style="width: 170px">
+	  						<col style="width: 100px">
+	  						<col style="width: 70px">
+						</colgroup>
+						
+						<thead>
+							<tr>
+								<th>S.N</th>
+								<th>Ornaments</th>
+								<th>Specification</th>
+								<th>Nos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" value="1" disabled/></td>
+								<td><input type="text" class="newItem"/></td>
+								<td><input type="text" /></td>
+								<td><input type="text" class="appendRow" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row submit templateBox">
+					<input type="button" value="Submit" class="submitBtn"/>
+				</div>
+				<input type="button" value= "print" class="printBill"/>
+			</div>
+			<div class="col-md-2 col-sm-2 dateAndImage">
+				<!-- <div class="date">
+					<label class="inputLabel">Date:</label>
+					<input id="date" class="inputVal inputValDate" class="inputVal" name="date" type="text" />
+				</div> -->
+				 <div id="datetimepicker" class="input-append date">
+			      <input type="text" id="date" class="inputVal inputValDate"></input>
+			      <span class="add-on">
+			        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+			      </span>
+			    </div>
+				<div class="row">
+					<div class="item-image"><img class="center-block" src="/uploads/default.jpg"></div>
+					<label>
+						<input type="button" class="img_navigator_start" style="display: none;" />
+						<span class="secondaryNavFirst glyphicon glyphicon-backward disabled"></span>
+					</label>
+					<label>
+						<input type="button" class="img_navigator_prev" value="Prev" style="float: left; display: none;" data-page = '-1' disabled />
+						<span class="secondaryPrevBtn glyphicon glyphicon-chevron-left disabled"></span>
+					</label>
+					<label class="currLimit">1</label>&nbsp; out of &nbsp;
+					<label class="maxLimit">1</label>
+					<label>
+						<input type="button" class="img_navigator_next" value="Next" style="float: right; display: none;" data-page = '1' disabled />
+						<span class="secondaryNextBtn glyphicon glyphicon-chevron-right disabled"></span>
+					</label>
+					<label>
+						<input type="button" class="img_navigator_end" style="display: none;" />
+						<span class="secondaryNavEnd glyphicon glyphicon-forward disabled"></span>
+					</label>
+					<input type="image" class="confirmImg" src="/images/doneImage.png"/>
+					<input type="image" class="editImg" src="/images/editImage2.jpg"/>
+					<input type="image" class="clearImg" src="/images/clear.png"/>
+					<input type="image" class="takeSelfie" src="/images/camera.png"/>
+				</div>
+				<form id="myForm" action="upload.php" method="post" enctype="multipart/form-data">
+			    	 <input type="file" size="60" name="myfile" class="fileChooser">
+			    	 <input type="submit" value="Upload">
+			 	</form>
+			 	<div id="progress">
+			        <div id="bar"></div>
+			        <div id="percent">0%</div >
+				</div>
+			</div>
+
+			
+		</div>
+		<div id="webModalContainer" class="modal fade" role="dialog" data-backdrop="static">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Some text in the modal.</p>
+		      </div>
+		     <!-- <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		      </div> -->
+		    </div>
+
+		  </div>
+		</div>
+    </script>
+
+
+    <script type="text/template" id="newBillCreationTemplate_2" class="template">
+    	<div class='row billCreation'>
+    		<div class='row billHeader'>
+    			<div class='ganeshJi' style='width: 10%; float: left;'>
+    				<img class="center-block" src="/images/ganeshjiLogo.png" style="width: 53px; height:60px;">
+    			</div>
+    			<div class='shopName' style='width: 80%; float: left; text-align: center;'>
+    				Pawn Brokers 
+    			</div>
+    			<div class='lakshmiJi' style='width: 10%; float: left;'>
+    				<img class="center-block" src="/images/lakshmijiLogo.jpg" style="width: 53px; height:60px;">
+    			</div>
+	    	</div>
+			<div class="col-md-7 col-sm-7" style="border-right: 4px solid #BFB8B8;">
+				<div class="row BillAndAmt">
+					<div class="secondaryName billIdentity">
+						<input id="billSeries" class="inputVal" type="text" style="width: 20px;"/>
+						<input id="billNo" class="inputVal secondaryVal" type="text" style="width: 176px;" />
+					</div>
+					<div id="datetimepicker" class="input-append date">
+				      <input type="text" id="date" class="inputVal inputValDate secondaryVal"></input>
+				      <span class="add-on">
+				        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				      </span>
+				    </div>
+					<div class="secondaryName" style="margin-top: 20px;">
+					<img src="/images/rupeeIcon.png" style="width: 20px; height: 17px;">
+						<input id="ammout" class="inputVal secondaryVal" type="text" placeholder='Amount' style="width: 156px;" />
+					</div>
+				</div>
+
+				<div class="row cName">
+					<div class="secondaryName">
+						<label class="inputLabel">Customer Name</label>
+						<input id="customerName" class="inputVal secondaryVal" type="text" placeholder='CustomerName' />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Father/Gaurdian Name</label>
+						<input id="fatherGaurdianName" class="inputVal secondaryVal" type="text" placeholder='Father/Guardian Name'  />
+					</div>
+				</div>
+				<div class="row addr">
+					<label class="inputLabel">Address 1</label>
+					<input id="address" class="inputVal" class="inputVal" type="text" placeholder='Address' />
+				</div>
+				<div class="row placeAndPin">
+					<div class="secondaryName">
+						<label class="inputLabel">Place:</label>
+						<input id="place" class="inputVal secondaryVal" type="text" placeholder='City' />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">PIN:</label>
+						<input id="pincode" class="inputVal secondaryVal" type="text" placeholder='Pincode' />
+					</div>
+				</div>
+				<div class="row contactAndMob">
+					<div class="secondaryName">
+						<label class="inputLabel">Mobile:</label>
+						<input id="mobNo" class="inputVal secondaryVal" type="text" placeholder='Mobile No.'  />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Telephone:</label>
+						<input id="teleNo" class="inputVal secondaryVal" type="text" placeholder='Landline No.' />
+					</div>
+				</div>
+				<div class="row ">
+					<div class="secondaryName">
+						<label class="inputLabel">Weight:</label>
+						<input id="ornWeight" class="inputVal secondaryVal" type="text" placeholder='jewel Wt'  />
+					</div>
+					<div class="secondaryName">
+						<label class="inputLabel">Nett:</label>
+						<input id="ornNett" class="inputVal secondaryVal" type="text" placeholder='Net jewel Wt'  />
+					</div>
+				</div>
+				<div class="row ornamentDetails">
+					<table>
+						<colgroup>
+							<col style="width: 30px">
+	  						<col style="width: 170px">
+	  						<col style="width: 100px">
+	  						<col style="width: 50px">
+						</colgroup>
+						
+						<thead>
+							<tr>
+								<th>S.N</th>
+								<th>Ornaments</th>
+								<th>Specification</th>
+								<th>Nos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" value="1" disabled/></td>
+								<td><input type="text" class="newItem"/></td>
+								<td><input type="text" /></td>
+								<td><input type="text" class="appendRow" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row submit templateBox">
+					<input id="submitBill" type="button" value="Submit" class="submitBtn"/>
+				</div>
+				<input type="button" value= "print" class="printBill"/>
+			</div>
+			<div class="col-md-4 col-sm-4 dateAndImage sidePane">
+				<!-- <div class="date">
+					<label class="inputLabel">Date:</label>
+					<input id="date" class="inputVal inputValDate" class="inputVal" name="date" type="text" />
+				</div> -->
+				 <!-- <div id="datetimepicker" class="input-append date">
+			      <input type="text" id="date" class="inputVal inputValDate"></input>
+			      <span class="add-on">
+			        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+			      </span>
+			    </div> -->
+				<div class="row imageConatiner">
+					<div class="item-image"><img class="center-block" src="/uploads/default.jpg"></div>
+					<div class="img_navigators">
+						<label>
+							<input type="button" class="img_navigator_start" style="display: none;" />
+							<span class="secondaryNavFirst glyphicon glyphicon-backward disabled"></span>
+						</label>
+						<label>
+							<input type="button" class="img_navigator_prev" value="Prev" style="float: left; display: none;" data-page = '-1' disabled />
+							<span class="secondaryPrevBtn glyphicon glyphicon-chevron-left disabled"></span>
+						</label>
+						<label class="currLimit">1</label>&nbsp; out of &nbsp;
+						<label class="maxLimit">1</label>
+						<label>
+							<input type="button" class="img_navigator_next" value="Next" style="float: right; display: none;" data-page = '1' disabled />
+							<span class="secondaryNextBtn glyphicon glyphicon-chevron-right disabled"></span>
+						</label>
+						<label>
+							<input type="button" class="img_navigator_end" style="display: none;" />
+							<span class="secondaryNavEnd glyphicon glyphicon-forward disabled"></span>
+						</label>
+					</div>
+					<input type="image" class="confirmImg" src="/images/toggle_up.png"/>
+					<input type="image" class="editImg" src="/images/toggle_down.png"/>
+					<div class='imageControls'>
+						<input type="image" class="clearImg" src="/images/clear.png"/>
+						<input type="image" class="takeSelfie" src="/images/camera.png"/>
+						<form id="myForm" action="upload.php" method="post" enctype="multipart/form-data">
+				    		 <input type="file" size="60" name="myfile" class="fileChooser" style="width: 90%; margin-left: 20px;">
+				    		 <input type="submit" value="Upload" style="float: left; margin-left: 20px;">
+				 		</form>
+					  	</br>
+					 	<div id="progress">
+					        <div id="bar"></div>
+					        <div id="percent">0%</div >
+						</div>
+					</div>
+				</div>
+				<div class="largeAmtDisplay">
+					<input type='text' value='Rs: 0.00' disabled/>
+				</div>
+				
+			</div>
+
+			
+		</div>
+		<div id="webModalContainer" class="modal fade" role="dialog" data-backdrop="static">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Some text in the modal.</p>
+		      </div>
+		     <!-- <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		      </div> -->
+		    </div>
+
+		  </div>
+		</div>
+    </script>
+
+
+    <script type="text/template" id="pledgeBookTemplate" class="template">
+	    <table id="pendingDetails" class="display" cellspacing="0" width="100%">
+	        <colgroup>
+				<col style="width: 30px">
+				<col style="width: 20px">
+				<col style="width: 40px">
+				<col style="width: 50px">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 170px">
+				<col style="width: 70px">
+				<col style="width: 50px">
+			</colgroup>
+	        <thead>
+	            <tr>
+	            	<th>S No</th>
+	            	<th></th>
+	                <th>Bill No</th>
+	                <th>Date</th>
+	                <th>Customer Name</th>
+	                <th>Care of</th>
+	                <th>Address</th>
+	                <th>Amount</th>
+	                <th>Others</th>
+	            </tr>
+	            <tr id="filterInput">
+	            	<th>serialNo</th>
+	            	<th></th>
+	                <th>BillNo</th>
+	                <th>date</th>
+	                <th>CustomerName</th>
+	                <th>Father/Gaurdian Name</th>
+	                <th>Address</th>
+	                <th>Amount</th>
+	                <th>details</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <% 
+	            _.each(response, function(value , key){
+	            	%>
+	            	<tr>
+	            	<td><%= key+1 %></td>
+	            	<td><div class="<%= value.status%>"><span class="hidden<%= value.status%>"><%= value.status%></span></div></td>
+	            	<td class="pledgeBillNo" title="<%= value.billNo%>"><%= value.billNo%></td>
+	            	<td title="<%= value.dates%>"><%= value.dates%></td>
+	            	<td title="<%= value.cname%>"><%= value.cname %></td>
+	            	<td title="<%= value.fgname%>"><%= value.fgname%></td>
+	            	<td title="<%= value.address%>"><%= value.address%></td>
+	            	<td title="<%= value.amount%>"><%= value.amount%></td>
+	            	<td>
+	            		<div class="ornamentPopover"
+	            			data-toggle = 'item-popover'
+	            			data-placement = 'left'
+	            			data-content = "<%= gs.pledgeBook.getDetails(value)  %>"
+	            			data-html = "<%= gs.pledgeBook.getDetails(value) %>"
+	            			data-title = "<p style='float :left;'><%= value.billNo%></p><p style='float :right;'><%= value.dates%></p>"
+	            		> Details
+	            		</div>
+	            	</td>
+	            	</tr>
+			
+		<% }); %>
+	        </tbody>
+	    </table>
+	   
+	   <div id="modalContainer" class="modal fade" role="dialog" data-backdrop="static">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Some text in the modal.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default popup-editBill" id='popup-ModifyBill'>Edit</button>
+		        <button type="button" class="btn btn-default" id="popup-closeBill">Bill Close</button>
+		        <button type="button" class="btn btn-default" id="popup-openBill">Bill Open</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+	<div id="alertMsgModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+		      </div>
+		    </div>
+		  </div>
+	</div>
+	<div id="confirmationModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" id="confirmationSuccess">Ok</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+    </script>
+    <script type="text/template" id="billClosingTemplate" class="template">
+    	<div class="row billClosing">
+			<div class="billHeader">
+					Pawn Broker
+			</div>
+			<div class="row">
+				<div class="closingPanel col-md-3">
+					<label>Bill No : </label></br>
+					<input id="billToBeClosed" type="text" class=""/>
+				</div>
+				<div class="clearfix"></div>
+				<div class="col-md-2"></div>
+				<div class="detailsHeader col-md-6">
+					<div class="descHeader">
+						<p id="closingBillNo" class="pull-left"></p>
+						<p id="closingBillPledgeDate" class="pull-right"></p>
+					</div>
+					<div class="descBody">
+						<div>
+							<p id="closingCustomerName" class="BCcustomerName text-left col-md-5" title="Govindraj"></p>
+							<label class="col-md-1">c/o</label>
+							<p id="closingBillCareName" class="BCcareOfName text-center col-md-5" title="gopal"></p>
+							<div class="clearfix"></div>
+							<p id="closingBillAddress" class="BCaddress col-md-12 text-left"></p>
+							<div class="clearfix"></div>
+							<p id="closingBillLocation" class="BCplace col-md-6 text-left"></p>
+							<div class="clearfix"></div>
+							<p id="closingOrnWeight" class="BCweight text-left col-md-5"></p>
+							<p id="closingPledgeAmt" class="BCamount text-right"></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="BCimageContainer">
+						<img id="closingCustomerPic" class="center-block" src="/uploads/default.jpg">
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="col-md-2"></div>
+				<div class="col-md-6 BCOrnDiv">
+					<table id="closingOrnDetails">
+						<colgroup>
+							<col style="width: 15px">
+							<col style="width: 150px">
+							<col style="width: 90px">
+							<col style="width: 35px">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>S.No</th>
+								<th class="text-left">Item</th>
+								<th>Spec</th>
+								<th>Gram</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-2 closeButtonContainer">
+					<input type="button" value="Close Bill" class="closeBillButton"/>
+				</div>
+			</div>
+		</div>
+
+    </script>
+    <script type="text/template" id="webCammTemplate" class="template">
+		<!-- camera screen -->
+		<div id="camera_wrapper">
+			<div id="camera"></div>
+			<div id="show_saved_img"></div>
+		</div>
+		<div id='camera_controls'>
+			<button id="capture_btn">Capture</button>
+			<button id="webcamReset">Reset</button>
+			<button id="deletePhoto">Delete</button>
+			<button id="savePhoto">Save Photo</button>
+		</div>		
+    </script>
+
+</head>
+<body>
+	<div class="tab">
+		<div class="menuTop">
+  			<div class="menuBar">
+				<ul class="leftMenus">
+      				<li class="home">Home
+      					<div class="dropdownLabel"></div>
+      					
+      				</li>
+      				<li class="tools">Tools
+      					<div class="dropdownLabel"></div>
+      					<div class="dropdown">
+      						<ul class="tools-list">
+      							<li id="createNewBill">Bill Creation </li>
+      							<li id="closeABill"> Bill Closing </li>
+      							<li id="getPledgeBook"> Pledge Book </li>
+      						</ul>
+      					</div>
+      				</li>
+      				<li class="settings">Settings
+      					<div class="dropdownLabel"></div>
+      					<div class="dropdown">
+      						<ul class="tools-list">
+      							<li> Add Customer </li>
+      						</ul>
+      					</div>
+      				</li>
+  				</ul>
+    		</div>
+  		</div>
+	</div>
+	<div class="mainContent">
+
+	</div>
+
+	
+</body>
+</html>
