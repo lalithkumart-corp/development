@@ -178,7 +178,7 @@ gs.autocompleter = {
 	},
 	
 	getPendingCustomers: function(){
-		var query = "SELECT cname FROM "+gs.database.schema+".pledgebook";
+		var query = "SELECT distinct cname FROM "+gs.database.schema+".pledgebook";
 		//gs.querybuilder.executeQuery(query, gs.autocompleter.storePendingCustomerLists);
 		var obj = {
 			aQuery: query
@@ -188,6 +188,7 @@ gs.autocompleter = {
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.storePendingCustomerLists(response);
+		   	gs.autocompleter.storeCustid(response);
 		});
 		application.core.call(request, callBackObj);
 	},
@@ -305,11 +306,17 @@ gs.autocompleter = {
 	},
 	storePendingCustomerLists: function(data){
 		var aSelf = gs.autocompleter;
-		data = aSelf.getUniqueList(data, 'cname');
+		//data = aSelf.getUniqueList(data, 'cname');
 		aSelf.pendingCustomers = [];
 		_.each(data , function(value, key){
 			aSelf.pendingCustomers.push(value.cname);
 		});
+	},
+	storeCustid: function(data){
+		var aSelf = gs.autocompleter;
+		aSelf.custId = [];
+
+
 	},
 
 	storePendingGuardianLists: function(data){

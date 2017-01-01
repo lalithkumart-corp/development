@@ -6,6 +6,11 @@ application.core ={
 	autocompleter : {
 		billClosing : false
 	},
+	defaults : {
+		pincode: '600056',
+		place: 'CHENNAI',
+		address2: 'KATTUPPAKKAM'
+	},
 
 	bindHomeEvents : function(){
 		var aSelf = application.core;

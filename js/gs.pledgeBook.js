@@ -344,6 +344,7 @@ gs.pledgeBook = {
         gs.pledgeBook.disablePopup();
         gs.pledgeBook.bindPopupEvents('viewingOpenBill');
         application.bill.creation.bindImageRelations();
+        application.bill.creation.bindCustIdCreations();
         application.bill.creation.bindTraverseEvents();
         $('.imageControls .takeSelfie').hide();
 
@@ -392,6 +393,7 @@ gs.pledgeBook = {
         $('#billSeries').val(billSeries);
         $('#billNo').val(billNumber);
         $('#ammout').val(data.amount);
+        $('#custId').val(data.custid);
         $('#customerName').val(data.cname);
         $('#fatherGaurdianName').val(data.fgname);
         $('#address').val(data.address);
@@ -532,7 +534,7 @@ gs.pledgeBook = {
         //var aBillNo = $('#billSeries').val() +'.'+ $('#billNo').val();
         if(!_.isEmpty(data)){
             var entry = application.bill.creation.getEntries();
-            var aQuery = "UPDATE "+gs.database.schema+".pledgebook SET dates='"+entry.adate+"', amount='"+entry.aAmt+"', cname='"+entry.aCustName+"', fgname='"+entry.aFGName+"', address='"+entry.aAddress+"', place='"+entry.aPlace+"', pincode='"+entry.aPincode+"', mobile='"+entry.aMobNo+"', telephone='"+entry.aTeleNo+"', ornaments='"+entry.ornaments+"', netwt='"+entry.aNett+"', grossWt='"+entry.awt+"', ornType='"+entry.ornType+"', interest='"+entry.intRate+"', interest_amt='"+entry.intAmount+"', given_amt='"+entry.givenAmt+"', profilepicpath='"+entry.profilepicpath+"', status='"+entry.status+"'  WHERE billNo='"+aBillNo+"'";
+            var aQuery = "UPDATE "+gs.database.schema+".pledgebook SET dates='"+entry.adate+"', amount='"+entry.aAmt+"', cname='"+entry.aCustName+"', fgname='"+entry.aFGName+"', address='"+entry.aAddress+"', place='"+entry.aPlace+"', pincode='"+entry.aPincode+"', mobile='"+entry.aMobNo+"', telephone='"+entry.aTeleNo+"', ornaments='"+entry.ornaments+"', netwt='"+entry.aNett+"', grossWt='"+entry.awt+"', ornType='"+entry.ornType+"', interest='"+entry.intRate+"', interest_amt='"+entry.intAmount+"', given_amt='"+entry.givenAmt+"', profilepicpath='"+entry.profilepicpath+"', status='"+entry.status+"', custid='"+entry.custid+"'  WHERE billNo='"+aBillNo+"'";
             gs.querybuilder.executeQuery(aQuery, gs.pledgeBook.updateComplete);
             gs.pledgeBook.updatedBillNo = aBillNo;
         }else{
