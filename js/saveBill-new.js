@@ -80,7 +80,7 @@ application.bill.creation = {
                 $(".ornamentDetails tbody").find('.newItem').removeClass('newItem');
                 $(".ornamentDetails tbody").append(newRow);
                 $(".ornamentDetails tbody").find('.newItem').focus();
-                gs.autocompleter.billOrnList();
+                gs.autocompleter.getOrnList();
             }
 
 
@@ -174,8 +174,16 @@ application.bill.creation = {
     },
 
     setDefaults: function(){
-        var aQuery = 'SELECT * FROM '+gs.database.schema+'.billseries';
-        gs.querybuilder.executeQuery(aQuery, application.bill.creation.updateDefaults);
+        var obj = {};
+        obj.aQuery= 'SELECT * FROM '+gs.database.schema+'.billseries';
+        var callBackObj = application.core.getCallbackObject();
+        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+        callBackObj.bind('api_response', function(event, response){
+          response = JSON.parse(response);
+          application.bill.creation.updateDefaults(response);
+          gs.autocompleter.setAutoCompleter('billCreation');
+        });
+        application.core.call(request, callBackObj);
     },
 
     updateDefaults: function(data){
@@ -437,7 +445,7 @@ application.bill.creation = {
     },
 
     bindNecessaryEvents: function(){
-        gs.autocompleter.billOrnList();
+        gs.autocompleter.getOrnList();
     },
 
     getEntries : function(intDatas) {
@@ -886,6 +894,7 @@ application.bill.creation = {
         if(fName != '')
             fName = fName.substring(0,1);
         var idPrefix = cName + fName;
+        idPrefix = idPrefix.toUpperCase();
         var idSuffix = 1;
         var id = idPrefix + idSuffix;
         var obj = {
@@ -901,6 +910,7 @@ application.bill.creation = {
             if(!_.isEmpty(data) && !_.isEmpty(data[0].custid)){
                 _.each(data, function(value, index){
                     var existingId = value.custid;
+                    existingId = existingId.toUpperCase();
                     if(existingId.indexOf(id) !== -1){
                         idSuffix = idSuffix+1;
                         id= idPrefix + idSuffix;

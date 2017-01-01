@@ -69,8 +69,7 @@ gs.billClosing = {
 			gs.billClosing.updateDetailsOnChange();
 		});
 		
-
-		gs.autocompleter.bindEvents('billClosing');
+		gs.autocompleter.init('billClosing');
 	},
 	bindConfirmationEvents: function(){
 		var aSelf = gs.billClosing;
@@ -90,20 +89,20 @@ gs.billClosing = {
 						var callBackObj = application.core.getCallbackObject();
 				        var request = application.core.getRequestData('executequery.php', obj , 'POST');
 				        callBackObj.bind('api_response', function(event, response){
-				          gs.billClosing.clearEntries();
-				          $('#billToBeClosed').focus();
+		        			var obj = {
+		        				aQuery: "INSERT INTO "+gs.database.schema+".billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+datas.billNo+"', '"+datas.pledgedDate+"', '"+ datas.closingDate +"','"+ datas.pledgedAmt +"', '"+ datas.no_of_month +"', '"+ datas.int_rate +"', '"+ datas.int_rupee_per_month+ "','"+ datas.interest_amt +"', '"+ datas.actual_estimated_amt + "', '"+ datas.discount_amt +"', '"+ datas.paid_amt +"', '"+ datas.payment_mode+"')"
+		        			}
+		        			var callBackObj2 = application.core.getCallbackObject();
+		        	        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		        	        callBackObj2.bind('api_response', function(event, response){
+		        	         	gs.billClosing.clearEntries();
+						        gs.autocompleter.setAutoCompleter('billClosing');						        
+		        	        });
+		        	        application.core.call(request, callBackObj2);
 				        });
 				        application.core.call(request, callBackObj);
 
-						var obj = {
-							aQuery: "INSERT INTO "+gs.database.schema+".billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+datas.billNo+"', '"+datas.pledgedDate+"', '"+ datas.closingDate +"','"+ datas.pledgedAmt +"', '"+ datas.no_of_month +"', '"+ datas.int_rate +"', '"+ datas.int_rupee_per_month+ "','"+ datas.interest_amt +"', '"+ datas.actual_estimated_amt + "', '"+ datas.discount_amt +"', '"+ datas.paid_amt +"', '"+ datas.payment_mode+"')"
-						}
-						var callBackObj = application.core.getCallbackObject();
-				        var request = application.core.getRequestData('executequery.php', obj , 'POST');
-				        callBackObj.bind('api_response', function(event, response){
-				          //TODO
-				        });
-				        application.core.call(request, callBackObj);
+						
 					}
 			});
 		});
@@ -270,7 +269,6 @@ gs.billClosing = {
 	},
 
 	clearEntries: function(){
-		debugger;
 		$('#billToBeClosed').val('');
 		$("#closingBillNo").html('');
 		$('#closingBillPledgeDate').html('');

@@ -372,7 +372,7 @@ gs.pledgeBook = {
             $('#confirmationSuccess').addClass('confirmOpen');
             $('#confirmationSuccess').removeClass('confirmClose');
         }
-        gs.autocompleter.bindEvents('billClosing');
+        gs.autocompleter.init('billClosing');
         gs.billClosing.onBillSelect(aBillNo , 'book');
         gs.billClosing.disableControls();
         gs.pledgeBook.bindPopupEvents('viewingClosedBill');
