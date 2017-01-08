@@ -21,6 +21,8 @@
 	
 
 	<link rel="stylesheet" type="text/css" href="cssfile.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/gs.ornManager.css"/>
+	
 	<link rel="stylesheet" type="text/css" href="/lib/dataTables/dataTables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/lib/dataPicker/jquery-ui.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/spinner_lib/hue_spinner.css"/>
@@ -57,8 +59,12 @@
  	<script type="text/javascript" src="/js/gs.export.js"></script>
  	<script type="text/javascript" src="/js/gs.spinner.js"></script>
  	<script type="text/javascript" src="/js/gs.popover.js"></script>
+ 	<script type="text/javascript" src="/js/gs.ornaments.js"></script>
 
  	<script type="text/javascript" src="/js/qrcode.js"></script>
+
+ 	<script type="text/javascript" src="/js/gs.popup.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="/css/gs.popup.css"/>
 
         <script type="text/template" id="newBillCreationTemplate" class="template">
     	<div class='row billCreation'>
@@ -601,7 +607,54 @@
     		</table>	    	
 	    </div>
     </script>
-    
+    <script type='text/template' id='ornamentsPageTemplate' class='template'>
+    	<div class='row'>
+    		<div class='col-sm-12 ornInputContainer'>
+    			<select class="ui orn_type">
+				  <option value="0">G</option>
+				  <option value="1">S</option>
+				  <option value="2">B</option>
+				</select>
+				<input type='text' class='ornInputField' placeholder='Enter Ornament Name' />
+				<input type='button' value="Add" id='addNewOrn'/>
+    		</div>
+    		<div class="ornListContainer col-sm-12">
+    			<table id='ornManagementTable'>
+					<colgroup>
+						<col style="width: 50px">
+						<col style="width: 300px">
+						<col style="width: 100px">
+					</colgroup>
+    				<thead>
+    					<tr>
+    						<th>S.No</th>
+    						<th>Ornament Name</th>
+    						<th style="text-align: center;"><img class="delete-selected-orn" src="/images/delete-icon.png" title="Delete Selected"></img></th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					
+    				</tbody>
+    			</table>
+    			
+    		</div>
+	    </div>
+    </script>
+    <script type='text/template' id='messageTemplate' class='template'>
+    	<div class = 'msgModal_overlay'></div>
+    	<div class = 'msgModalContainer'>
+    		<div id='msgHeaderDiv'>
+    			<p id='msgHeaderText'></p>
+    		</div>
+    		<div id="msgBodyDiv">
+    			<p id="msgBodyText"></p>
+    		</div>
+    		<div id="msgFooterDiv">
+    			
+    		</div>
+    	</div>
+    </script>
+
 
 </head>
 <body>
@@ -629,7 +682,7 @@
       						<ul class="tools-list">
       							<li id='tallyGenerator'> Tally </li>
       							<li id='tokenGenerator'> Generate Token </li>
-      							<li> Add Customer </li>
+      							<li id='manageOrn'> Manage Ornaments </li>
       						</ul>
       					</div>
       				</li>

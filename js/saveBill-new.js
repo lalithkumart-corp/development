@@ -366,7 +366,12 @@ application.bill.creation = {
     saveEntry : function(){
         if($('#ammout').val().trim() == ''){
             $('#ammout').focus();
-            alert('Amount Should not be Empty !');
+            gs.popup.init(
+                {
+                 title: 'Alert',
+                 desc: 'Please enter the Amount. It cannot be Empty !' ,
+                 dismissBtnText: 'Ok'
+                });
             return;
         }
 

@@ -78,6 +78,15 @@ application.core ={
 			gs.generateToken.init();
 		});
 
+		$('#manageOrn').on('click', function(e){
+			aSelf.updatePageName('ornamentsPage');
+			var property = {};
+			var template = _.template($('#ornamentsPageTemplate').html(), property);
+			$('.mainContent').html(template);
+			$('.autocomplete-suggestions').remove();
+			gs.ornaments.init();
+		});
+
 		this.getNecessaryDatas();
 	},
 
@@ -160,7 +169,7 @@ application.core ={
 
 	//this will remove the class which is set for PageName Identification
 	removePageName: function(){
-		var pageNames = ['book', 'billCreationPage', 'billClosingPage', 'tallyPage'];
+		var pageNames = ['book', 'billCreationPage', 'billClosingPage', 'tallyPage', 'ornamentsPage'];
 		var classes = $('.mainContent').attr('class');
 		classList = classes.split(' ');
 		_.each(pageNames, function(value, index){
