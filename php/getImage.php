@@ -1,9 +1,9 @@
 <?php
+include 'app.php';
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$mydb = "dev";
-$link = mysqli_connect("localhost:3306", "root", "root", $mydb);
+$link = mysqli_connect("localhost:3306", "root", "root", $myDb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -12,7 +12,7 @@ if (!$link) {
 
 $fname = $_POST['fname'];
 //$sql = "SELECT profilepicpath FROM test.mytable1 WHERE myNames = '" .$fname. "'";
-$sql = "SELECT profilepicpath FROM ".$mydb.".pledgebook WHERE cname = '" .$fname. "'";
+$sql = "SELECT profilepicpath FROM ".$myDb.".pledgebook WHERE cname = '" .$fname. "'";
 
 $result = $link->query($sql);
 

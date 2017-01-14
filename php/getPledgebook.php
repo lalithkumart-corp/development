@@ -1,17 +1,16 @@
 <?php
+include 'app.php';
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$mydb = "dev";
 $link = mysqli_connect("localhost:3306", "root", "root", $mydb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     exit;
 }
-$listname = $_POST['ListName'];
-$sql = "SELECT " .$listname. " FROM ".$mydb.".pledgebook";
 
+$sql = "SELECT * FROM ".$mydb.".pledgebook";
 $result = $link->query($sql);
 
 $stack = array();

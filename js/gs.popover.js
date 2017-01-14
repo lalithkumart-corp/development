@@ -30,7 +30,7 @@ gs.popover = {
 		var self = gs.popover;
 		var tmpContainer = $.now();
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('interest.php', '' , 'POST');
+		var request = application.core.getRequestData('../php/interest.php', '' , 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   callback(response, tmpContainer);

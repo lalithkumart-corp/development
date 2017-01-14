@@ -87,13 +87,13 @@ gs.billClosing = {
 							aQuery: "UPDATE "+gs.database.schema+".pledgebook SET status='closed', billClosedDate='"+ datas.closingDate +"' WHERE billNo='"+billNumber+"'"
 						}
 						var callBackObj = application.core.getCallbackObject();
-				        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+				        var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 				        callBackObj.bind('api_response', function(event, response){
 		        			var obj = {
 		        				aQuery: "INSERT INTO "+gs.database.schema+".billclosingdetail (billNo, pledgedDate, closedDate, pledge_amt, no_of_month, rate_of_interest, int_rupee_per_month, interest_amt, actual_estimated_amt, discount_amt, paid_amt, payment_mode) VALUES ('"+datas.billNo+"', '"+datas.pledgedDate+"', '"+ datas.closingDate +"','"+ datas.pledgedAmt +"', '"+ datas.no_of_month +"', '"+ datas.int_rate +"', '"+ datas.int_rupee_per_month+ "','"+ datas.interest_amt +"', '"+ datas.actual_estimated_amt + "', '"+ datas.discount_amt +"', '"+ datas.paid_amt +"', '"+ datas.payment_mode+"')"
 		        			}
 		        			var callBackObj2 = application.core.getCallbackObject();
-		        	        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		        	        var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 		        	        callBackObj2.bind('api_response', function(event, response){
 		        	         	gs.billClosing.clearEntries();
 						        gs.autocompleter.setAutoCompleter('billClosing');						        
@@ -119,7 +119,7 @@ gs.billClosing = {
         	obj.aQuery = "SELECT * FROM "+gs.database.schema+".pledgebook where billNo='"+billNo+"' and status='open'";
         
         var callBackObj = application.core.getCallbackObject();
-        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+        var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
         callBackObj.bind('api_response', function(event, response){
           gs.billClosing.fillDetails(JSON.parse(response), pageName);
         });
@@ -207,7 +207,7 @@ gs.billClosing = {
 			var obj = {};
 			obj.aQuery = "SELECT * FROM "+gs.database.schema+".billclosingdetail where billNo='"+billNo+"'";
 			var callBackObj = application.core.getCallbackObject();
-			var request = application.core.getRequestData('executequery.php', obj , 'POST');
+			var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 			callBackObj.bind('api_response', function(event, response){
 			  response = JSON.parse(response);
 			  response = response[0];

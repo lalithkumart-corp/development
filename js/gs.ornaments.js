@@ -25,7 +25,7 @@ gs.ornaments = {
 		var obj = {};
 		obj.aQuery= "SELECT * from "+gs.database.schema+".ornament_list";
 		var callBackObj = application.core.getCallbackObject();
-        var request = application.core.getRequestData('executequery.php', obj , 'POST');
+        var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
         callBackObj.bind('api_response', function(event, response){
 			data = JSON.parse(response);
 			$('#ornManagementTable tbody').html('');
@@ -138,7 +138,7 @@ gs.ornaments = {
 		gs.popup.hide();
 		var obj = {};
         obj.aQuery= 'DELETE FROM '+gs.database.schema+'.ornament_list WHERE ornament_id = "'+ornId+'"';
-		var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 		var callBackObj = application.core.getCallbackObject();
         callBackObj.bind('api_response', function(event, response){
         	response = JSON.parse(response);
@@ -175,7 +175,7 @@ gs.ornaments = {
 		query = query.substring(0, query.length-1);
 		query += ')';
 		obj.aQuery = query;
-		var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 		var callBackObj = application.core.getCallbackObject();
         callBackObj.bind('api_response', function(event, response){
         	response = JSON.parse(response);
@@ -208,7 +208,7 @@ gs.ornaments = {
 		gs.popup.hide();
 		var obj = {};
         obj.aQuery= 'UPDATE '+gs.database.schema+'.ornament_list SET ornament_name = "'+newVal+'" WHERE ornament_id = "'+ornId+'"';
-		var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 		var callBackObj = application.core.getCallbackObject();
         callBackObj.bind('api_response', function(event, response){
         	response = JSON.parse(response);
@@ -238,7 +238,7 @@ gs.ornaments = {
 		var newOrnName = $('.ornInputField').val();
 		var obj = {};
         obj.aQuery= 'INSERT into '+gs.database.schema+'.ornament_list (ornament_id, ornament_name, ornament_status) VALUES ("'+$.now()+'", "'+newOrnName+'", "active")';
-		var request = application.core.getRequestData('executequery.php', obj , 'POST');
+		var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
 		var callBackObj = application.core.getCallbackObject();
         callBackObj.bind('api_response', function(event, response){
         	response = JSON.parse(response);

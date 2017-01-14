@@ -1,16 +1,16 @@
 <?php
+include 'app.php';
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$mydb = "dev";
-$link = mysqli_connect("localhost:3306", "root", "root", $mydb);
+$link = mysqli_connect("localhost:3306", "root", "root", $myDb);
 
 if (!$link) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     exit;
 }
 
-$sql = "SELECT * FROM ".$mydb.".pledgebook";
+$sql = "SELECT * FROM ".$myDb.".interest";
 $result = $link->query($sql);
 
 $stack = array();

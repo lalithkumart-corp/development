@@ -199,8 +199,8 @@ gs.webcamModel = {
 	displayPicName : '',
 	init: function(){
 		//give the php file path
-			webcam.set_api_url( 'saveimage.php' );
-			webcam.set_swf_url( 'customWebcamPHP/scripts/webcam.swf' );//flash file (SWF) file path
+			webcam.set_api_url( '../php/saveimage.php' );
+			webcam.set_swf_url( '../customWebcamPHP/scripts/webcam.swf' );//flash file (SWF) file path
 			webcam.set_quality( 100 ); // Image quality (1 - 100)
 			webcam.set_shutter_sound( true ); // play shutter click sound
 			

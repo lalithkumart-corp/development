@@ -93,7 +93,7 @@ application.core ={
 	getNecessaryDatas: function(){
 		var aSelf = this;
 		var callBackObj = aSelf.getCallbackObject();
-        var request = application.core.getRequestData('interest.php', '' , 'POST');
+        var request = application.core.getRequestData('../php/interest.php', '' , 'POST');
         callBackObj.bind('api_response', function(event, response){
            aSelf.setInterestDetailsInStorage(response);
         });

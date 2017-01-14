@@ -7,7 +7,7 @@ gs.querybuilder = {
 			aQuery: query
 		}
 		$.ajax({
-            url: 'executequery.php',
+            url: '../php/executequery.php',
             type: 'POST',
             data: obj,
             success: function(data, textStatus, jqXHR)

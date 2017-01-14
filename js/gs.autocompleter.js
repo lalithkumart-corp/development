@@ -46,7 +46,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT distinct cname FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setCNames(response);
@@ -57,7 +57,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT fgname FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setFGNames(response);
@@ -68,7 +68,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT address FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setAddress(response);
@@ -79,7 +79,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT address2 FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setAddress2(response);
@@ -90,7 +90,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT place FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setPlace(response);
@@ -101,7 +101,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT pincode FROM "+gs.database.schema+".pledgebook";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setPincode(response);
@@ -112,7 +112,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT mobile FROM "+gs.database.schema+".pledgebook";		
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setMobileNos(response);
@@ -123,7 +123,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT ornament_name FROM "+gs.database.schema+".ornament_list";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setOrnList(response);
@@ -134,7 +134,7 @@ gs.autocompleter = {
 		var obj = {};
 		obj.aQuery = "SELECT billNo FROM "+gs.database.schema+".pledgebook where status = 'open'";
 		var callBackObj = application.core.getCallbackObject();
-		var request = application.core.getRequestData('executeQuery.php', obj, 'POST');
+		var request = application.core.getRequestData('../php/executeQuery.php', obj, 'POST');
 		callBackObj.bind('api_response', function(event, response){
 			response = JSON.parse(response);
 		   	gs.autocompleter.setPendingBillNos(response);
