@@ -1,0 +1,121 @@
+<table id="pendingDetails" class="display" cellspacing="0" width="100%">
+    <colgroup>
+		<col style="width: 30px">
+		<col style="width: 20px">
+		<col style="width: 40px">
+		<col style="width: 50px">
+		<col style="width: 100px">
+		<col style="width: 100px">
+		<col style="width: 170px">
+		<col style="width: 70px">
+		<col style="width: 50px">
+	</colgroup>
+    <thead>
+        <tr>
+        	<th>S No</th>
+        	<th></th>
+            <th>Bill No</th>
+            <th>Date</th>
+            <th>Customer Name</th>
+            <th>Care of</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>Others</th>
+        </tr>
+        <tr id="filterInput">
+        	<th>serialNo</th>
+        	<th></th>
+            <th>BillNo</th>
+            <th>date</th>
+            <th>CustomerName</th>
+            <th>Father/Gaurdian Name</th>
+            <th>Address</th>
+            <th>Amount</th>
+            <th>details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% 
+        _.each(response, function(value , key){
+        	%>
+        	<tr>
+        	<td><%= key+1 %></td>
+        	<td><div class="<%= value.status%>"><span class="hidden<%= value.status%>"><%= value.status%></span></div></td>
+        	<td class="pledgeBillNo" title="<%= value.billNo%>"><%= value.billNo%></td>
+        	<td title="<%= value.dates%>"><%= value.dates%></td>
+        	<td title="<%= value.cname%>"><%= value.cname %></td>
+        	<td title="<%= value.fgname%>"><%= value.fgname%></td>
+        	<td title="<%= value.address + " " + ((value.address2)? ('- '+value.address2) : '') %>"><%= value.address + " " + ((value.address2)? ('- '+value.address2) : '') %></td>
+        	<td title="<%= value.amount%>"><%= value.amount%></td>
+        	<td>
+        		<div class="ornamentPopover"
+        			data-toggle = 'item-popover'
+        			data-placement = 'left'
+        			data-content = "<%= gs.pledgeBook.getDetails(value)  %>"
+        			data-html = "<%= gs.pledgeBook.getDetails(value) %>"
+        			data-title = "<p style='float :left;'><%= value.billNo%></p><p style='float :right;'><%= value.dates%></p>"
+        		> Details
+        		</div>
+        	</td>
+        	</tr>
+	
+<% }); %>
+    </tbody>
+</table>
+	   
+<div id="modalContainer" class="modal fade" role="dialog" data-backdrop="static">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default popup-editBill" id='popup-ModifyBill'>Edit</button>
+        <button type="button" class="btn btn-default" id="popup-closeBill">Bill Close</button>
+        <button type="button" class="btn btn-default" id="popup-openBill">Bill Open</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="alertMsgModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+	      </div>
+	    </div>
+	  </div>
+</div>
+<div id="confirmationModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="confirmationSuccess">Ok</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

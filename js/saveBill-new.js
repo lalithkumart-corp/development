@@ -321,7 +321,7 @@ application.bill.creation = {
             $('#webModalContainer').modal('show');
              $('#webModalContainer').on('shown.bs.modal', function () {
                   var obj = {};
-                  $('#webModalContainer .modal-body').html(_.template($('#webCammTemplate').html(), obj));
+                  $('#webModalContainer .modal-body').html(_.template(template_htmlstr_webcam, obj));
                   gs.webcamModel.init();
             });
             $('#webModalContainer').on('hidden.bs.modal', function () {

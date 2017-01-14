@@ -154,7 +154,7 @@ gs.pledgeBook = {
 	},
 	renderDetails : function(response){
 			var property = {};
-			var template = _.template($('#pledgeBookTemplate').html(), response);
+			var template = _.template(template_htmlstr_pledgeBook, response);
 			$('.mainContent').html(template);
 			gs.pledgeBook.asDataTable();
 			$('.mainContent').addClass('book');
@@ -324,7 +324,7 @@ gs.pledgeBook = {
     
     loadBillCreationTemplate: function(aBillNo){
         var property = {};
-        var template = _.template($('#newBillCreationTemplate').html(), property);
+        var template = _.template(template_htmlstr_billCreation, property);
         $("#modalContainer .modal-body").html(template);
         $('.printBill').hide();
         $('.submitBtn').hide();
@@ -363,7 +363,7 @@ gs.pledgeBook = {
 
     loadBillClosingTemplate: function(aBillNo){
         var property = {};
-        var template = _.template($('#billClosingTemplate').html(), property);
+        var template = _.template(template_htmlstr_billClosing, property);
         $("#modalContainer .modal-body").html(template);
         
         if(gs.pledgeBook.editingBillStatus == 'closed'){

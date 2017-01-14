@@ -38,7 +38,7 @@ application.core ={
 		$('#createNewBill').on('click', function(e){
 			aSelf.updatePageName('billCreationPage');
 			var property = {};
-			var template = _.template($('#newBillCreationTemplate').html(), property);
+			var template = _.template(template_htmlstr_billCreation, property);
 			$('.mainContent').html(template);
 			$('.autocomplete-suggestions').remove();
 			application.bill.creation.init();
@@ -52,7 +52,7 @@ application.core ={
 		$('#closeABill').on('click', function(e){
 			aSelf.updatePageName('billClosingPage');
 			var property = {};
-			var template = _.template($('#billClosingTemplate').html(), property);
+			var template = _.template(template_htmlstr_billClosing, property);
 			$('.mainContent').html(template);
 			$('.autocomplete-suggestions').remove();
 			gs.billClosing.init();
@@ -62,7 +62,7 @@ application.core ={
 		$('#tallyGenerator').on('click', function(e){
 			aSelf.updatePageName('tallyPage');
 			var property = {};
-			var template = _.template($('#tallyGeneratorTemplate').html(), property);
+			var template = _.template(template_htmlstr_tally, property);
 			$('.mainContent').html(template);
 			$('.autocomplete-suggestions').remove();
 			application.bill.customDate.bindEvents('tallyGenerator');
@@ -81,7 +81,7 @@ application.core ={
 		$('#manageOrn').on('click', function(e){
 			aSelf.updatePageName('ornamentsPage');
 			var property = {};
-			var template = _.template($('#ornamentsPageTemplate').html(), property);
+			var template = _.template(template_htmlstr_ornaments, property);
 			$('.mainContent').html(template);
 			$('.autocomplete-suggestions').remove();
 			gs.ornaments.init();

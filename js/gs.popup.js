@@ -26,7 +26,7 @@ gs.popup = {
 		this.dismissBtnText = options.dismissBtnText || 'Cancel';
 		this.enableHtml = !_.isUndefined(options.enableHtml)?options.enableHtml:true;
 		var property = {};
-		var template = _.template($('#messageTemplate').html(), property);
+		var template = _.template(template_htmlstr_msgBox, property);
 		$('body').append(template);
 		this.addTitle();
 		this.addDescription();

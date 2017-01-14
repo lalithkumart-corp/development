@@ -1,0 +1,129 @@
+<div class="row billClosing">
+	<div class="billHeader">
+			Pawn Broker
+	</div>
+	<div class="row">
+		<div class="closingPanel col-md-3">
+			<label>Bill No : </label></br>
+			<input id="billToBeClosed" type="text" class=""/>
+		</div>
+		<div class="closingDate col-md-3">
+				</br>
+		      <input type="text" id="date" class="inputVal inputValDate secondaryVal" data-index="3"></input>
+		      <span class="add-on">
+		        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+		      </span>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-2"></div>
+		<div class="detailsHeader col-md-6">
+			<div class="descHeader">
+				<p id="closingBillNo" class="pull-left"></p>
+				<p id="closingBillPledgeDate" class="pull-right"></p>
+			</div>
+			<div class="descBody">
+				<div>
+					<p id="closingCustomerName" class="BCcustomerName text-left col-md-5" title="Govindraj"></p>
+					<label class="col-md-1">c/o</label>
+					<p id="closingBillCareName" class="BCcareOfName text-center col-md-5" title="gopal"></p>
+					<div class="clearfix"></div>
+					<p id="closingBillAddress" class="BCaddress col-md-12 text-left"></p>
+					<div class="clearfix"></div>
+					<p id="closingBillLocation" class="BCplace col-md-6 text-left"></p>
+					<div class="clearfix"></div>
+					<p id="closingOrnWeight" class="BCweight text-left col-md-5"></p>
+					<p id="closingPledgeAmt" class="BCamount text-right"></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="BCimageContainer">
+				<img id="closingCustomerPic" class="center-block" src="/uploads/default.jpg">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-2"></div>
+		<div class="col-md-6 BCOrnDiv">
+			<table id="closingOrnDetails">
+				<colgroup>
+					<col style="width: 15px">
+					<col style="width: 150px">
+					<col style="width: 90px">
+					<col style="width: 35px">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>S.No</th>
+						<th class="text-left">Item</th>
+						<th>Spec</th>
+						<th>Gram</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+			
+		<div class="clearfix"></div>
+		<div class="col-md-2"></div>
+		<div class="billClosingCalcDetails col-md-6">
+			<label class='pledgeDate'>DD/MM/YYYY</label>   -	 
+			<label class='redeemDate'>DD/MM/YYYY</label></br>
+			<div>
+				<label class='col-md-2'>Principal </label><div class='col-md-8'></div><input id='principal_amt' class='col-md-2' type='number' value='0'/>
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<label class='col-md-2'>@Rate </label><div class='col-md-4'></div><input id='int_rate' class='col-md-2' type='number' value='0'/>
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<label class='col-md-2'>Mon&nbsp;*&nbsp;IntPerMon&nbsp;=&nbsp;IntAmt </label><div class='col-md-4'></div>
+				<input id='int_amt_month' class='col-md-2' type='number' value='0'/>
+				<input id='int_month' class='col-md-2' type='number' value='0'/>
+				<input id='int_amt_total' class='col-md-2' type='number' value='0'/>
+
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<label class='col-md-2'>RedeemAmt </label><div class='col-md-8'></div><input id='total_amt' class='col-md-2' type='number' value='0'/></br>
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<label class='col-md-2'>less </label><div class='col-md-8'></div><input id='discount_amt' class='col-md-2' type='number' value='0'/></br>
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<label class='col-md-2'>Total&nbsp;Paid&nbsp;Amount</label><div class='col-md-8'></div><input id='paid_amt' class='col-md-2' type='number' value='0'/></br>
+			</div>
+		</div>
+		<div class="col-md-2 closeButtonContainer">
+			<select class="ui payment_mode dropdown">
+			  <option value="0">Cash</option>
+			  <option value="1">Card</option>
+			  <option value="2">Cheque</option>
+			</select>
+			<input type="button" value="Close Bill" class="closeBillButton"/>
+		</div>
+
+	</div>
+</div>
+<div id="billCloseConfirmationModel" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="confirmBillClose">Close This Bill</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

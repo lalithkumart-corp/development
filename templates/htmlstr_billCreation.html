@@ -1,0 +1,199 @@
+<div class='row billCreation'>
+	<div class='row billHeader'>
+		<div class='ganeshJi' style='width: 10%; float: left;'>
+			<img class="center-block" src="/images/ganeshjiLogo.png" style="width: 53px; height:60px;">
+		</div>
+		<div class='shopName' style='width: 80%; float: left; text-align: center;'>
+			<p class='orgName'>BHOWRI DEVI</p>
+			<p class='orgType'>Pawn Broker</p>
+		</div>
+		<div class='lakshmiJi' style='width: 10%; float: left;'>
+			<img class="center-block" src="/images/lakshmijiLogo.jpg" style="width: 53px; height:60px;">
+		</div>
+	</div>
+	<div class="col-md-7 col-sm-7" style="border-right: 4px solid #BFB8B8;">
+		<div class="row BillAndAmt">
+			<div class="secondaryName billIdentity">
+				<input id="billSeries" class="inputVal" type="text" style="width: 20px;" data-index="1"/>
+				<input id="billNo" class="inputVal secondaryVal" type="number" style="width: 176px;" data-index="2"/>
+				<div id="qrCodeImg" class="" style='display: none;'></div>
+			</div>
+			<div id="datetimepicker" class="input-append date">
+		      <input type="text" id="date" class="inputVal inputValDate secondaryVal" data-index="3"></input>
+		      <span class="add-on">
+		        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+		      </span>
+		    </div>
+			<div class="secondaryName" style="margin-top: 20px;">
+			<img src="/images/rupeeIcon.png" style="width: 20px; height: 17px;">
+				<input id="ammout" class="inputVal secondaryVal" type="number" placeholder='Amount' style="width: 156px;" data-index="4"/>						
+			</div>
+			<div class="secondaryName" style="margin-top: 20px;">
+				<input id="custId" class="inputVal secondaryVal" type="text" style="width:100px" disabled=true/>
+			</div>
+		</div>
+
+		<div class="row cName">
+			<div class="secondaryName">
+				<label class="inputLabel">Customer Name</label>
+				<input id="customerName" class="inputVal secondaryVal" type="text" placeholder='CustomerName' data-index="5"/>
+			</div>
+			<div class="secondaryName">
+				<label class="inputLabel">Father/Gaurdian Name</label>
+				<input id="fatherGaurdianName" class="inputVal secondaryVal" type="text" placeholder='Father/Guardian Name' data-index="6" />
+			</div>
+		</div>
+		<div class="row addr">
+			<label class="inputLabel">Address 1</label>
+			<input id="address" class="inputVal" class="inputVal" type="text" placeholder='Address' data-index="7"/>
+		</div>
+		<div class="row placeAndPin">
+			<div class="secondaryName">
+				<label class="inputLabel">Address2:</label>
+				<input id="address2" class="inputVal secondaryVal" type="text" placeholder='Address2' data-index="8"/>
+			</div>
+			<div class="secondaryName">
+				<label class="inputLabel">Place:</label>
+				<input id="place" class="inputVal secondaryVal" type="text" placeholder='City' data-index="9"/>
+			</div>
+		</div>
+		<div class="row contactAndMob">
+			<div class="secondaryName">
+				<label class="inputLabel">PIN:</label>
+				<input id="pincode" class="inputVal secondaryVal" type="number" placeholder='PinCode' data-index="10" />
+			</div>
+			<div class="secondaryName">
+				<label class="inputLabel">Mobile:</label>
+				<input id="mobNo" class="inputVal secondaryVal" type="number" placeholder='Mobile No.' data-index="11"/>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="secondaryName">
+				<label class="inputLabel">Gross Wt:</label>
+				<input id="ornNett" class="inputVal secondaryVal" type="text" placeholder='jewel Wt' data-index="12" />
+			</div>
+			<div class="secondaryName">
+				<label class="inputLabel">Net Wt:</label>
+				<input id="ornWeight" class="inputVal secondaryVal" type="text" placeholder='Net jewel Wt' data-index="13" />
+			</div>
+		</div>
+		<div class="row ornamentDetails">
+			<table>
+				<colgroup>
+					<col style="width: 30px">
+						<col style="width: 170px">
+						<col style="width: 100px">
+						<col style="width: 50px">
+				</colgroup>
+				
+				<thead>
+					<tr>
+						<th>S.N</th>
+						<th>Ornaments</th>
+						<th>Specification</th>
+						<th>Nos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" value="1" disabled/></td>
+						<td><input type="text" class="newItem" data-index="14"/></td>
+						<td><input type="text" data-index="15"/></td>
+						<td><input type="text" class="appendRow" data-index="16"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row submit templateBox">
+			<div class="viewBillDetails" data-toggle="billDetailsPopover" data-title="Options" data-class="viewBillDetailsPopover"></div>
+			<input id="submitBill" type="button" value="Submit" class="submitBtn"/>
+		</div>
+		<input type="button" value= "print" class="printBill"/>
+	</div>
+	<div class="col-md-5 col-sm-5 dateAndImage sidePane">
+		<div class="row imageConatiner">
+			<div class="item-image"><img class="center-block" src="/uploads/default.jpg"></div>
+			<div class="img_navigators">
+				<label>
+					<input type="button" class="img_navigator_start" style="display: none;" />
+					<span class="secondaryNavFirst glyphicon glyphicon-backward disabled"></span>
+				</label>
+				<label>
+					<input type="button" class="img_navigator_prev" value="Prev" style="float: left; display: none;" data-page = '-1' disabled />
+					<span class="secondaryPrevBtn glyphicon glyphicon-chevron-left disabled"></span>
+				</label>
+				<label class="currLimit">1</label>&nbsp; out of &nbsp;
+				<label class="maxLimit">1</label>
+				<label>
+					<input type="button" class="img_navigator_next" value="Next" style="float: right; display: none;" data-page = '1' disabled />
+					<span class="secondaryNextBtn glyphicon glyphicon-chevron-right disabled"></span>
+				</label>
+				<label>
+					<input type="button" class="img_navigator_end" style="display: none;" />
+					<span class="secondaryNavEnd glyphicon glyphicon-forward disabled"></span>
+				</label>
+			</div>
+			<input type="image" class="confirmImg" src="/images/toggle_up.png"/>
+			<input type="image" class="editImg" src="/images/toggle_down.png"/>
+			<div class='imageControls'>
+				<input type="image" class="clearImg" src="/images/clear.png"/>
+				<input type="image" class="takeSelfie" src="/images/camera.png"/>
+				<form id="myForm" action="upload.php" method="post" enctype="multipart/form-data">
+		    		 <input type="file" size="60" name="myfile" class="fileChooser" style="width: 90%; margin-left: 20px;">
+		    		 <input type="submit" value="Upload" style="float: left; margin-left: 20px;">
+		 		</form>
+			  	</br>
+			 	<div id="progress">
+			        <div id="bar"></div>
+			        <div id="percent">0%</div >
+				</div>
+			</div>
+		</div>
+		<div class="largeAmtDisplay">
+			<input type='text' value='Rs: 0.00' disabled/>
+		</div>
+		<div class='col-sm-12 col-md-12 pendingBillListContainer'>
+			<table>
+			  	<colgroup>
+					<col style="width: 50px">
+					<col style="width: 76px">
+					<col style="width: 120px">	
+					<col style="width: 110px">
+					<col style="width: 40px">
+					<col style="width: 50px">
+				</colgroup>
+			    <thead>
+			        <tr>
+			        	<th>S No</th>
+			        	<th>Bill No</th>
+			        	<th>Pledge Date</th>
+			            <th>Amount</th>
+			            <th>Mnth</th>
+			            <th>Orn</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    	
+			    </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="webModalContainer" class="modal fade" role="dialog" data-backdrop="static">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+     <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
