@@ -235,7 +235,9 @@ gs.ornaments = {
 		var aSelf = gs.ornaments;
 		gs.popup.hide();
 		gs.spinner.show();
-		var newOrnName = $('.ornInputField').val();
+		var temp = $('.orn_type').val()
+		var orn_type = $('.orn_type option[value='+ temp +']').text() || 'G';
+		newOrnName = orn_type + " " + $('.ornInputField').val();
 		var obj = {};
         obj.aQuery= 'INSERT into '+gs.database.schema+'.ornament_list (ornament_id, ornament_name, ornament_status) VALUES ("'+$.now()+'", "'+newOrnName+'", "active")';
 		var request = application.core.getRequestData('../php/executequery.php', obj , 'POST');
